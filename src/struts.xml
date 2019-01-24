@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.i18n.encoding" value="UTF-8"/>
+<!-- Action的类由Struts自身创建 -->
+	<package name="ssh2" extends="struts-default" namespace="/">
+		<action name="login" class="userAction" method="login">
+			<result name="loginSuccess" type="redirectAction">
+				<param name="actionName">userList</param>
+			</result>
+			<result name="404">/jsp/404.jsp</result>
+		</action>		
+		<action name="saveUser" class="userAction" method="saveUser">
+			<result name="saveSuccess" type="redirectAction">
+				<param name="actionName">userList</param>
+			</result>
+		</action>
+		<action name="selectById" class="userAction" method="selectById">
+			<result name="getSuccess">/jsp/info.jsp</result>
+			<result name="404">/jsp/404.jsp</result>
+		</action>
+		<action name="updateUser" class="userAction" method="updateUser">
+			<result name="updateSuccess" type="redirectAction">
+				<param name="actionName">userList</param>
+			</result>
+		</action>
+		<action name="deleteUser" class="userAction" method="deleteUser">
+			<result name="updateSuccess" type="redirectAction">
+				<param name="actionName">userList</param>
+			</result>
+		</action>
+		<!-- 用户列表 -->
+		<action name="userList" class="userAction">
+			<result name="success" type="redirect">/jsp/list.jsp</result>
+		</action>
+	</package>
+</struts>    

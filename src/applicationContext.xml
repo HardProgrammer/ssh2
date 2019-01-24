@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/liuxw?characterEncoding=utf8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="123456"></property>
+	</bean>
+	<!--Hibernate相关配置  -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!-- 注入连接池 -->
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<!-- 配置属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<!-- 打印sql语句 -->
+				<prop key="hibernate.show_sql">
+					true
+				</prop>
+			</props>
+		</property>
+		<!-- 配置映射 -->
+		<property name="mappingResources">
+			<list>
+				<value>ssh2/com/entity/SysUser.hbm.xml</value></list>
+		</property>
+	</bean>
+	
+	<!-- 添加事务配置 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!--配置Action  -->
+	<bean id="userAction" class="ssh2.com.action.UserAction" scope="prototype">
+		<property name="userService">
+		<ref bean="userService" />
+		</property>
+	</bean>
+	
+	<!--配置Service  -->
+	<bean id="userService" class="ssh2.com.service.UserService">
+		<property name="userDao">
+		<ref bean="userDao" />
+		</property>
+	</bean>
+	
+	<!-- 配置Dao -->
+	<bean id="userDao" class="ssh2.com.dao.UserDao">
+		<property name="sessionFactory">
+		<ref bean="sessionFactory" />
+		</property>
+	</bean>	
+</beans>
