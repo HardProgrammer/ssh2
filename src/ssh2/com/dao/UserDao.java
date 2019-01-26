@@ -23,7 +23,7 @@ public class UserDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	//保存用户
+	//用户登陆
 	public SysUser login(String name,String password) {
 		System.out.println("用户登录Dao");
 		String sql = "select * from sys_user where userName=? and password=?";
