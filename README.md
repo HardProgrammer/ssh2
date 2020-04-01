@@ -13,4 +13,9 @@ https://blog.csdn.net/lxw983520/article/details/86631710
 # 四、SSH2实现用户增删改查
 https://blog.csdn.net/lxw983520/article/details/86631698
 
+
+# 欢迎关注我的CSDN博客
+https://blog.csdn.net/lxw983520
+
 # 欢迎关注我的个人公众号
+![博思Thinker](https://images.gitee.com/uploads/images/2020/0401/204140_c039a86b_1379789.png "屏幕截图.png")
