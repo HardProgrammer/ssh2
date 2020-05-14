@@ -21,4 +21,4 @@ https://blog.csdn.net/lxw983520
 https://lxwthink.gitee.io/thinkerlxw/
 
 # thinkerlxw--个人公众号
-<img src="https://images.gitee.com/uploads/images/2020/0401/204140_c039a86b_1379789.png" width=375 alt="屏幕截图.png")
+搜索公众号 "博思thinker" 关注即可
